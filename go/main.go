@@ -3,11 +3,14 @@ package main
 import (
 	"net/http"
 
+	"github.com/PavelBLab/event-booking-api/configurations/postgres"
 	"github.com/PavelBLab/event-booking-api/models"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	//sqllite3.InitDB()
+	postgres.InitDB()
 
 	server := gin.Default()
 
@@ -22,7 +25,13 @@ func main() {
 }
 
 func getEvents(context *gin.Context) {
-	events := models.GetAllEvents()
+	events, err := models.GetAllEvents()
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Could not retrieve events: " + err.Error()})
+		return
+	}
+
 	context.JSON(http.StatusOK, events)
 }
 
@@ -31,12 +40,18 @@ func createEvent(context *gin.Context) {
 	err := context.ShouldBindJSON(&event)
 
 	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		context.JSON(http.StatusBadRequest, gin.H{"error": "Bad request:  " + err.Error()})
+		return
 	}
 
 	event.ID = 1
 	event.UserId = 1
-	event.Save()
+	err = event.Save()
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Could not save event: " + err.Error()})
+		return
+	}
 
 	context.JSON(http.StatusCreated, event)
 

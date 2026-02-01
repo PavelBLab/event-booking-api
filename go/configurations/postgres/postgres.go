@@ -9,7 +9,8 @@ import (
 var DB *sql.DB
 
 func InitDB() {
-	DB, err := sql.Open("postgres", "host=localhost port=5432 user=postgres password=postgres dbname=api sslmode=disable")
+	var err error
+	DB, err = sql.Open("postgres", "host=localhost port=7001 user=postgres password=postgres dbname=event_booking_api sslmode=disable")
 
 	if err != nil {
 		panic("Could not connect to database.")
