@@ -21,30 +21,11 @@ func (e Event) Save() error {
 	// later: add it to the databases
 
 	query := `
-		INSERT INTO events (name, description, location, date_time, user_id) 
+		INSERT INTO events (name, description, location, date_time, user_id)
 		VALUES ($1, $2, $3, $4, $5)
+		RETURNING id
 	`
-	statement, err := postgres.DB.Prepare(query)
-
-	if err != nil {
-		return err
-	}
-
-	defer statement.Close()
-
-	result, err := statement.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserId)
-
-	if err != nil {
-		return err
-	}
-
-	id, err := result.LastInsertId()
-
-	if err != nil {
-		return err
-	}
-
-	e.ID = id
+	err := postgres.DB.QueryRow(query, e.Name, e.Description, e.Location, e.DateTime, e.UserId).Scan(&e.ID)
 
 	return err
 }
@@ -69,7 +50,7 @@ func GetAllEvents() ([]Event, error) {
 			return nil, err
 		}
 
-		events = append(events, Event{})
+		events = append(events, event)
 	}
 
 	return events, nil
