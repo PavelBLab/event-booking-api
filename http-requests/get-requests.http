@@ -1,2 +1,5 @@
-### GET events
+### GET all events
 GET http://localhost:8080/events
+
+### GET event by ID
+GET http://localhost:8080/events/1
