@@ -1,0 +1,10 @@
+### Create a new event
+POST http://localhost:8080/events
+Content-Type: application/json
+
+{
+  "name": "New Event",
+  "description": "This is a new event.",
+  "location": "New York",
+  "date": "2024-07-01T10:00:00Z"
+}
