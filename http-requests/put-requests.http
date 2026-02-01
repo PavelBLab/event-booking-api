@@ -1,0 +1,10 @@
+### Update an existing event
+PUT http://localhost:8080/events/1
+Content-Type: application/json
+
+{
+  "name": "Updated Event Name",
+  "description": "This is the updated description of the event.",
+  "location": "Los Angeles",
+  "date_time": "2024-07-02T15:00:00Z"
+}

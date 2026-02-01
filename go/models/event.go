@@ -69,3 +69,35 @@ func GetEventById(id int64) (Event, error) {
 
 	return event, nil
 }
+
+func (e Event) Update() error {
+	query := `UPDATE events 
+			  SET name = $1, description = $2, location = $3, date_time = $4 
+			  WHERE id = $5`
+	statement, err := postgres.DB.Prepare(query)
+
+	if err != nil {
+		return err
+	}
+
+	defer statement.Close()
+
+	_, err = statement.Exec(e.Name, e.Description, e.Location, e.DateTime, e.ID)
+
+	return err
+}
+
+func (e Event) Delete() error {
+	query := `DELETE FROM events WHERE id = $1`
+	statement, err := postgres.DB.Prepare(query)
+
+	if err != nil {
+		return err
+	}
+
+	defer statement.Close()
+
+	_, err = statement.Exec(e.ID)
+
+	return err
+}
