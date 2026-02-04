@@ -1,7 +1,7 @@
 ### Create a new event1
 POST http://localhost:8080/events
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyQGdtYWlsLmNvbSIsImV4cCI6MTc3MDIzMTgxNSwidXNlcklkIjoyfQ.KbBwG_IjcRPhBeeq5uJ0Ygn9pKwfOE2kL0zFLapxIVA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyQGdtYWlsLmNvbSIsImV4cCI6MTc3MDIzNDI2MiwidXNlcklkIjoyfQ.I7Wh5X8ySEJpKr6_Stc_b0tRVbZc3x0nOE-N4wyuLHg
 
 {
   "name": "New Event",

@@ -1,5 +1,5 @@
 ### Update an existing event
-PUT http://localhost:8080/events/1
+PUT http://localhost:8080/events/5
 Content-Type: application/json
 
 {
