@@ -1,0 +1,26 @@
+### User1 Login Request
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "email": "user1@gmail.com",
+  "password": "password123"
+}
+
+### User1 Login Request with Invalid Password
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "email": "user1@gmail.com",
+  "password": "invalid-password"
+}
+
+### User2 Login Request
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "email": "user2@gmail.com",
+  "password": "password456"
+}

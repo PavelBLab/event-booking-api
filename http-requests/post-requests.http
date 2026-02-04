@@ -1,10 +1,23 @@
-### Create a new event
+### Create a new event1
 POST http://localhost:8080/events
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyQGdtYWlsLmNvbSIsImV4cCI6MTc3MDIzMTgxNSwidXNlcklkIjoyfQ.KbBwG_IjcRPhBeeq5uJ0Ygn9pKwfOE2kL0zFLapxIVA
 
 {
   "name": "New Event",
   "description": "This is a new event.",
   "location": "New York",
+  "date_time": "2024-07-01T10:00:00Z"
+}
+
+### Create a new event2
+POST http://localhost:8080/events
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsImV4cCI6MTc3MDIzMjIzMiwidXNlcklkIjoxfQ.9BhmVSe8TXeDQw4hcsHFGU87CYJfzptRRc_UsSCDuSI
+
+{
+  "name": "New Event2",
+  "description": "This is a new event 2.",
+  "location": "Los Angeles",
   "date_time": "2024-07-01T10:00:00Z"
 }

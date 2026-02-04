@@ -12,12 +12,12 @@ type Event struct {
 	Description string    `binding:"required" json:"description"`
 	Location    string    `binding:"required" json:"location"`
 	DateTime    time.Time `json:"dateTime"`
-	UserId      int       `json:"userId"`
+	UserId      int64     `json:"userId"`
 }
 
 var events = []Event{}
 
-func (e Event) Save() error {
+func (e *Event) Save() error {
 	// later: add it to the databases
 
 	query := `
@@ -70,7 +70,7 @@ func GetEventById(id int64) (Event, error) {
 	return event, nil
 }
 
-func (e Event) Update() error {
+func (e *Event) Update() error {
 	query := `UPDATE events 
 			  SET name = $1, description = $2, location = $3, date_time = $4 
 			  WHERE id = $5`
@@ -87,7 +87,7 @@ func (e Event) Update() error {
 	return err
 }
 
-func (e Event) Delete() error {
+func (e *Event) Delete() error {
 	query := `DELETE FROM events WHERE id = $1`
 	statement, err := postgres.DB.Prepare(query)
 

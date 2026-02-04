@@ -1,0 +1,26 @@
+### Create a new user1
+POST http://localhost:8080/singup
+Content-Type: application/json
+
+{
+  "email": "user1@gmail.com",
+  "password": "password123"
+}
+
+### Create a new user2
+POST http://localhost:8080/singup
+Content-Type: application/json
+
+{
+  "email": "user2@gmail.com",
+  "password": "password456"
+}
+
+### Create a new user3
+POST http://localhost:8080/singup
+Content-Type: application/json
+
+{
+  "email": "user3@gmail.com",
+  "password": "password789"
+}

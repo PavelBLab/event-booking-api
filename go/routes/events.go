@@ -45,8 +45,8 @@ func createEvent(context *gin.Context) {
 		return
 	}
 
-	event.ID = 1
-	event.UserId = 1
+	userId := context.GetInt64("userId")
+	event.UserId = userId
 	err = event.Save()
 
 	if err != nil {
@@ -64,15 +64,20 @@ func updateEvent(context *gin.Context) {
 		return
 	}
 
-	_, err = models.GetEventById(eventId)
+	userId := context.GetInt64("userId")
+	event, err := models.GetEventById(eventId)
 
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error": "Could not retrieve event: " + err.Error()})
 		return
 	}
 
-	var updatedEvent models.Event
+	if event.UserId != userId {
+		context.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
 
+	var updatedEvent models.Event
 	err = context.ShouldBindJSON(&updatedEvent)
 
 	if err != nil {
